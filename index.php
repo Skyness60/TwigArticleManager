@@ -27,7 +27,7 @@ $articles = getArticles();
         <article>
         <ul>
           <li>
-            <h2> <?=$article['title'] ?></h2>
+            <h2><?=$article['title'] ?></h2>
             <p><?=$article['content'] ?></p>
             <img src="<?= $article['image'] ?>" alt="<?= $article['title'] ?>" />
             <p>L'article est publié depuis le <?=$article['created_at'] ?></p>
