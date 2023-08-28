@@ -47,7 +47,7 @@ function getArticles()
 {
     global $articles;
     return array_filter($articles, function ($article) {
-        return $article['enabled'] === true;
+        return $article['enabled'];
     });
 }
 
