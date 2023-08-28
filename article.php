@@ -1,7 +1,9 @@
 <?php
 
 require("_header.php");
-$articles = getArticles();
+
+$article = getArticle((int) $_GET['id']);
+
 
 ?>
 
@@ -23,18 +25,16 @@ $articles = getArticles();
 
     <div id="corps">
     <main>
-    <?php foreach ($articles as $article) : ?>
-        <article>
+    <article>
         <ul>
           <li>
             <h2><?=$article['title'] ?></h2>
-            <a href="article.php?id=<?=$article['id'] ?>">Voir plus...</a>
+            <p><?=$article['content'] ?></p>
             <img src="<?= $article['image'] ?>" alt="<?= $article['title'] ?>" />
             <p>L'article est publié depuis le <?=$article['created_at'] ?></p>
           </li>
         </ul>
       </article>
-    <?php endforeach; ?>
     </main>
     </div>
 

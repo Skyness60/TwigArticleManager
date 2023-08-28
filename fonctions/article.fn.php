@@ -1,7 +1,7 @@
 <?php
 
 $articles = [
-    [
+    0 => [
         "id" => 1,
         "title" => "Photo au dessus d'une montagne",
         "content" => "Cette photo a été prise en hommage à un grand alpiniste",
@@ -9,7 +9,7 @@ $articles = [
         "created_at" => "14/08/2023",
         "enabled" => true
     ], 
-    [
+    1 => [
         "id" => 2,
         "title" => "Photo d'une forêt mystérieuse",
         "content" => "Explorez les secrets cachés de cette forêt enchanteresse",
@@ -17,15 +17,7 @@ $articles = [
         "created_at" => "11/08/2023",
         "enabled" => false
     ], 
-    [
-        "id" => 3,
-        "title" => "Aventure sous-marine",
-        "content" => "Plongez dans les profondeurs de l'océan pour découvrir sa faune incroyable",
-        "image" => "https://previews.123rf.com/images/yuliiajd/yuliiajd1705/yuliiajd170500227/78106965-fond-de-for%C3%AAt-myst%C3%A9rieuse-printemps-avec-chemin-d-acc%C3%A8s-sur-une-journ%C3%A9e-ensoleill%C3%A9e.jpg",
-        "created_at" => "12/06/2023",
-        "enabled" => true
-    ], 
-    [
+    2 => [
         "id" => 4,
         "title" => "Aurore boréale magique",
         "content" => "Laissez-vous émerveiller par le spectacle de l'aurore boréale dans le ciel nocturne",
@@ -33,12 +25,20 @@ $articles = [
         "created_at" => "05/04/2023",
         "enabled" => true
     ],
-    [
+    3 => [
         "id" => 5,
         "title" => "Exploration urbaine",
         "content" => "Découvrez les rues animées de la ville et ses recoins cachés",
         "image" => "https://st.depositphotos.com/27201292/53543/i/450/depositphotos_535436052-stock-photo-an-old-abandoned-factory-in.jpg",
         "created_at" => "01/02/2023",
+        "enabled" => true
+    ],
+    4 => [
+        "id" => 3,
+        "title" => "Aventure sous-marine",
+        "content" => "Plongez dans les profondeurs de l'océan pour découvrir sa faune incroyable",
+        "image" => "https://previews.123rf.com/images/yuliiajd/yuliiajd1705/yuliiajd170500227/78106965-fond-de-for%C3%AAt-myst%C3%A9rieuse-printemps-avec-chemin-d-acc%C3%A8s-sur-une-journ%C3%A9e-ensoleill%C3%A9e.jpg",
+        "created_at" => "12/06/2023",
         "enabled" => true
     ]
 ];
@@ -53,7 +53,9 @@ function getArticles()
 
 function getArticle($id) 
 {
-
+    global $articles;
+    $index = array_search($id, array_column($articles, 'id'));
+    return $articles[$index];
 }
 
 ?>
