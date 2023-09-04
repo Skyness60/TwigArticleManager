@@ -1,7 +1,11 @@
 <?php
 
 require("_header.php");
-$articles = getArticles();
+$perPage = 5;
+$currentPage = (int) $_GET['page'];
+$total = countArticles();
+$lastPage = ceil($total / $perPage);
+$articles = getArticles($currentPage, $perPage);
 
 ?>
 
@@ -35,8 +39,23 @@ $articles = getArticles();
         </ul>
       </article>
     <?php endforeach; ?>
+
+    <ul>
+      <?php if ($currentPage > 1) : ?>
+        <li><a href="index.php?page=<?=($currentPage - 1) ?>">&leftarrow;</a></li>
+      <?php endif; ?>
+      <?php for ($i = 1; $i <= $lastPage; $i++) : ?>
+        <li><a href="index.php?page=<?=$i?>"><?=$i?></a></li>
+      <?php endfor; ?>
+      <?php if ($currentPage < $lastPage) : ?>
+        <li><a href="index.php?page=<?=($currentPage + 1) ?>">&rightarrow;</a></li>
+      <?php endif; ?>
+    </ul>
+
     </main>
     </div>
+
+
 
     <!-- Le pied de page -->
 
