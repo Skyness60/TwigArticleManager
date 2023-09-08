@@ -1,8 +1,8 @@
 <?php
 
 require("_header.php");
-
-$article = getArticle((int) $_GET['id']);
+$id = (int) $_GET['id'];
+$article = getArticle($db, $id);
 
 
 ?>

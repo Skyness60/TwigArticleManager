@@ -5,7 +5,7 @@ $perPage = 5;
 $currentPage = (int) $_GET['page'];
 $total = countArticles();
 $lastPage = ceil($total / $perPage);
-$articles = getArticles($currentPage, $perPage);
+$articles = getArticles($db, $currentPage, $perPage);
 
 ?>
 
