@@ -7,9 +7,8 @@ if (!empty($_POST["email"]) && !empty($_POST["password"])) {
     $password = $_POST["password"];
     $connection = connection($db, $username, $password);
     if ($connection) {
-        header('Location: index.php');
-    } else {
-        header('Location: login.php');
+        $_SESSION['logged_in'] = true;
+        header('Location: index.php?page=1');
     }
 }
 

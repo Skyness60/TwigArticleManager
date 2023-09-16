@@ -1,6 +1,12 @@
 <?php
 
 require("_header.php");
+
+if (!isset($_SESSION['logged_in']) || !$_SESSION['logged_in']) {
+  header('Location: login.php');
+  exit();
+}
+
 $perPage = 5;
 $currentPage = (int) $_GET['page'];
 $total = countArticles();

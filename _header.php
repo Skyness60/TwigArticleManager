@@ -1,4 +1,5 @@
 <?php 
+session_start();
 
 include("fonctions/database.fn.php");
 include("fonctions/article.fn.php");
