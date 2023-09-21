@@ -17,6 +17,8 @@ class ArticleRepository
         while ($row = $statement->fetch()) {
             $article = new Article();
             $article->setTitle($row['title']);
+            $article->setContent($row['content']);
+            $article->setImage($row['image']);
             array_push($articles, $article);
         }
 
@@ -36,5 +38,26 @@ class ArticleRepository
     public function countArticles()
     {
         return 1;
+    }
+
+    public function getLatestArticles($db, $limit, $isEnabled)
+    {
+        $sql = "SELECT * FROM article WHERE enabled = :enabled ORDER BY created_at DESC LIMIT :limit";
+        $statement = $db->prepare($sql);
+        $statement->bindParam(':enabled', $isEnabled, PDO::PARAM_BOOL);
+        $statement->bindParam(':limit', $limit, PDO::PARAM_INT);
+        $statement->execute();
+
+        $articles = [];
+
+        while ($row = $statement->fetch()) {
+            $article = new Article();
+            $article->setTitle($row['title']);
+            $article->setContent($row['content']);
+            $article->setImage($row['image']);
+            array_push($articles, $article);
+        }
+
+        return $articles;
     }
 }

@@ -1,51 +1,40 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <title>Mon super site</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
- 
-    <body>
- 
-    <!-- L'en-tête -->
+<?php
 
-    <?php include("template/header.php") ?>
+$title = "comme je veux";
+ob_start();
 
-    <!-- Le corps -->
+?>
 
-    <div id="corps">
-    <main>
-    <?php foreach ($articles as $article) : ?>
-        <article>
-        <ul>
-          <li>
-            <h2><?=$article->getTitle() ?></h2>
-          </li>
-        </ul>
-      </article>
-    <?php endforeach; ?>
+<?php foreach ($articles as $article) : ?>
+  <article>
+  <ul>
+    <li>
+      <h2><?=$article->getTitle() ?></h2>
+      <p><?=$article->getContent() ?></p>
+      <img src="<?=$article->getImage() ?>" alt="<?=$article->getTitle() ?>"/>
+    </li>
+  </ul>
+</article>
+<?php endforeach; ?>
 
-    <ul>
-      <?php if ($currentPage > 1) : ?>
-        <li><a href="index.php?page=<?=($currentPage - 1) ?>">&leftarrow;</a></li>
-      <?php endif; ?>
-      <?php for ($i = 1; $i <= $lastPage; $i++) : ?>
-        <li><a href="index.php?page=<?=$i?>"><?=$i?></a></li>
-      <?php endfor; ?>
-      <?php if ($currentPage < $lastPage) : ?>
-        <li><a href="index.php?page=<?=($currentPage + 1) ?>">&rightarrow;</a></li>
-      <?php endif; ?>
-    </ul>
+<?php foreach ($events as $event) : ?>
+  <article>
+  <ul>
+    <li>
+      <h2><?=$event->getTitle() ?></h2>
+      <p><?=$event->getContent() ?></p>
+      <img src="<?=$event->getImage() ?>" alt="<?=$event->getTitle() ?>"/>
+      <p>ça commence le <?=$event->getStartAt() ?></p>
+      <p>ça dure <?=$event->getTime() ?></p>
+      <p>ça coûte <?=$event->getPrice() ?></p>
+    </li>
+  </ul>
+</article>
+<?php endforeach; ?>
 
-    </main>
-    </div>
+<?php 
 
+$content = ob_get_clean();
+require("template/layout.php");
 
-
-    <!-- Le pied de page -->
-
-    <?php include("template/footer.php") ?>
-
-    </body>
-</html>
+?>

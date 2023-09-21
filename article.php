@@ -1,8 +1,10 @@
 <?php
 
 require("_header.php");
+
+$repository = new ArticleRepository();
 $id = (int) $_GET['id'];
-$article = getArticle($db, $id);
+$articleId = $repository->getArticle($db, $id);
 
 
 ?>
@@ -28,10 +30,10 @@ $article = getArticle($db, $id);
     <article>
         <ul>
           <li>
-            <h2><?=$article['title'] ?></h2>
-            <p><?=$article['content'] ?></p>
-            <img src="<?= $article['image'] ?>" alt="<?= $article['title'] ?>" />
-            <p>L'article est publié depuis le <?=$article['created_at'] ?></p>
+            <h2><?=$articleId->getTitle() ?></h2>
+            <p><?=$articleId->getContent() ?></p>
+            <img src="<?=$articleId->getImage() ?>" alt="<?=$articleId->getTitle() ?>"/>
+            <p>L'article est publié depuis le <?=$articleId['created_at'] ?></p>
           </li>
         </ul>
       </article>

@@ -2,17 +2,19 @@
 
 require("_header.php");
 
-if (!isset($_SESSION['logged_in']) || !$_SESSION['logged_in']) {
-  header('Location: login.php');
-  exit();
+$request = $_SERVER["REQUEST_URI"];
+$path = "src/controller/";
+
+switch($request) {
+  case '/pokemon/home':
+    require $path . "home.php";
+    break;
+  case '/pokemon/blog':
+    require $path . "blog.php";
+    break;
+  case '/pokemon/events':
+    require $path . "events.php";
+    break;
+  default:
+    http_response_code(404);
 }
-
-$repository = new ArticleRepository();
-$perPage = 5;
-$currentPage = (int) $_GET['page'];
-$total = $repository->countArticles();
-$lastPage = ceil($total / $perPage);
-$articles = $repository->getArticles($db, $currentPage, $perPage);
-// $articles = getArticles($db, $currentPage, $perPage);
-
-require("view/homepage.php");
