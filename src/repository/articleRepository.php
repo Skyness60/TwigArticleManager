@@ -1,5 +1,9 @@
 <?php 
 
+namespace App\Repository;
+
+use App\Model\Article;
+
 class ArticleRepository 
 {
     public function getArticles($db, $page, $articlesPerPage) 
@@ -44,8 +48,8 @@ class ArticleRepository
     {
         $sql = "SELECT * FROM article WHERE enabled = :enabled ORDER BY created_at DESC LIMIT :limit";
         $statement = $db->prepare($sql);
-        $statement->bindParam(':enabled', $isEnabled, PDO::PARAM_BOOL);
-        $statement->bindParam(':limit', $limit, PDO::PARAM_INT);
+        $statement->bindParam(':enabled', $isEnabled, \PDO::PARAM_BOOL);
+        $statement->bindParam(':limit', $limit, \PDO::PARAM_INT);
         $statement->execute();
 
         $articles = [];

@@ -1,17 +1,19 @@
 <?php
 
+namespace App\Model;
+
 class Event
 {
     private int $id;
     private string $title;
     private string $content;
     private string $image;
-    private DateTime $start_at;
-    private DateTime $time;
+    private \DateTime $start_at;
+    private \DateTime $time;
     private int $price;
-    private Date $created_at;
-    private Date $updated_at;
-    private Date $delected_at;
+    private \Date $created_at;
+    private \Date $updated_at;
+    private \Date $delected_at;
     private bool $enabled;
 
     /**
@@ -89,7 +91,7 @@ class Event
     /**
      * Get the value of start_at
      */
-    public function getStartAt(): DateTime
+    public function getStartAt(): \DateTime
     {
         return $this->start_at;
     }
@@ -97,7 +99,7 @@ class Event
     /**
      * Set the value of start_at
      */
-    public function setStartAt(DateTime $start_at): self
+    public function setStartAt(\DateTime $start_at): self
     {
         $this->start_at = $start_at;
 
@@ -107,7 +109,7 @@ class Event
     /**
      * Get the value of time
      */
-    public function getTime(): DateTime
+    public function getTime(): \DateTime
     {
         return $this->time;
     }
@@ -115,7 +117,7 @@ class Event
     /**
      * Set the value of time
      */
-    public function setTime(DateTime $time): self
+    public function setTime(\DateTime $time): self
     {
         $this->time = $time;
 
@@ -143,7 +145,7 @@ class Event
     /**
      * Get the value of created_at
      */
-    public function getCreatedAt(): Date
+    public function getCreatedAt(): \Date
     {
         return $this->created_at;
     }
@@ -151,7 +153,7 @@ class Event
     /**
      * Set the value of created_at
      */
-    public function setCreatedAt(Date $created_at): self
+    public function setCreatedAt(\Date $created_at): self
     {
         $this->created_at = $created_at;
 
@@ -161,7 +163,7 @@ class Event
     /**
      * Get the value of updated_at
      */
-    public function getUpdatedAt(): Date
+    public function getUpdatedAt(): \Date
     {
         return $this->updated_at;
     }
@@ -169,7 +171,7 @@ class Event
     /**
      * Set the value of updated_at
      */
-    public function setUpdatedAt(Date $updated_at): self
+    public function setUpdatedAt(\Date $updated_at): self
     {
         $this->updated_at = $updated_at;
 
@@ -179,7 +181,7 @@ class Event
     /**
      * Get the value of delected_at
      */
-    public function getDelectedAt(): Date
+    public function getDelectedAt(): \Date
     {
         return $this->delected_at;
     }
@@ -187,7 +189,7 @@ class Event
     /**
      * Set the value of delected_at
      */
-    public function setDelectedAt(Date $delected_at): self
+    public function setDelectedAt(\Date $delected_at): self
     {
         $this->delected_at = $delected_at;
 

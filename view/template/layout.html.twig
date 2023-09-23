@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title><?= $title ?></title>
+        <title>{% block title %} {% endblock %}</title>
         <link rel="stylesheet" href="style.css">
     </head>
  
@@ -10,15 +10,15 @@
  
     <!-- L'en-tête -->
 
-    <?php include("template/header.php") ?>
+    {{ include('header.html.twig') }}
 
     <!-- Le corps -->
     <div id="corps">
-        <?= $content ?>
+        {% block content %} {% endblock %}
     </div>
     <!-- Le pied de page -->
 
-    <?php include("template/footer.php") ?>
+    {{ include('footer.html.twig') }}
 
     </body>
 </html>

@@ -1,0 +1,31 @@
+{% extends "template/layout.html.twig" %}
+
+{% block title %}Mon super site{% endblock %}
+
+{% block content %}
+    <h1>Index</h1>
+    {% for article in articles %}
+      <article>
+      <ul>
+        <li>
+          <h2>{{article.title}}</h2>
+          <p>{{article.content}}</p>
+          <img src="{{article.image}}" alt="{{article.title}}"/>
+        </li>
+      </ul>
+    </article>
+    {% endfor %}
+
+    {% for event in events %}
+      <article>
+      <ul>
+        <li>
+          <h2>{{event.title }}</h2>
+          <p>{{event.content }}</p>
+          <img src="{{event.image }}" alt="{{event.title }}"/>
+          <p>ça coûte {{event.price }}</p>
+        </li>
+      </ul>
+    </article>
+    {% endfor %}
+{% endblock %}
