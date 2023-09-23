@@ -6,10 +6,17 @@ use App\Model\Event;
 
 class EventRepository 
 {
-    public function getLatestEvents($db, $limit, $isEnabled)
+    private $db;
+
+    public function __construct($db)
+    {
+        $this->db = $db;
+    }
+
+    public function getLatestEvents($limit, $isEnabled)
     {
         $sql = "SELECT * FROM event WHERE enabled = :enabled ORDER BY created_at DESC LIMIT :limit";
-        $statement = $db->prepare($sql);
+        $statement = $this->db->prepare($sql);
         $statement->bindParam(':enabled', $isEnabled, \PDO::PARAM_BOOL);
         $statement->bindParam(':limit', $limit, \PDO::PARAM_INT);
         $statement->execute();
