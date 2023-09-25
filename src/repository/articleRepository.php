@@ -2,17 +2,11 @@
 
 namespace App\Repository;
 
+use App\Core\Repository;
 use App\Model\Article;
 
-class ArticleRepository 
+final class ArticleRepository extends Repository
 { 
-    private $db;
-
-    public function __construct($db)
-    {
-        $this->db = $db;
-    }
-
     public function getArticles($page, $articlesPerPage) 
     {
         $sql = "SELECT * FROM article WHERE enabled = :enabled LIMIT :limit OFFSET :offset";
@@ -53,11 +47,10 @@ class ArticleRepository
 
     public function getLatestArticles($limit, $isEnabled)
     {
-        $sql = "SELECT * FROM article WHERE enabled = :enabled ORDER BY created_at DESC LIMIT :limit";
-        $statement = $this->db->prepare($sql);
-        $statement->bindParam(':enabled', $isEnabled, \PDO::PARAM_BOOL);
-        $statement->bindParam(':limit', $limit, \PDO::PARAM_INT);
-        $statement->execute();
+        $sql = "SELECT * FROM article WHERE enabled = :enabled ORDER BY created_at DESC LIMIT $limit";
+        $statement = $this->db->query($sql, [
+            ':enabled'=> $isEnabled
+        ]);
 
         $articles = [];
 

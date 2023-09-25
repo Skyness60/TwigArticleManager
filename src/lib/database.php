@@ -4,12 +4,26 @@ namespace App\Lib;
 
 class Database
 {
-    public static function connection($config) 
+    protected \PDO $db;
+
+    public function __construct() 
     {
-        return new \PDO(
-            "mysql:host=" . $config["host"] . ";dbname=" . $config["dbname"] . ";charset=utf8",
-            $config["username"],
-            $config["password"]
+        $config = require 'config/config.php';
+        $database = $config['database'];
+
+        $this->db = new \PDO(
+            "mysql:host=" . $database["host"] . ";dbname=" . $database["dbname"] . ";charset=utf8",
+            $database["username"],
+            $database["password"]
         );
+    }
+
+    public function query($sql, $params)
+    {
+        $statement = $this->db->prepare($sql);
+
+        $statement->execute($params);
+
+        return $statement;
     }
 }

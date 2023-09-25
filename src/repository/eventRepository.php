@@ -2,24 +2,18 @@
 
 namespace App\Repository;
 
+use App\Core\Repository;
 use App\Model\Event;
 
-class EventRepository 
+final class EventRepository extends Repository
 {
-    private $db;
-
-    public function __construct($db)
-    {
-        $this->db = $db;
-    }
-
     public function getLatestEvents($limit, $isEnabled)
     {
-        $sql = "SELECT * FROM event WHERE enabled = :enabled ORDER BY created_at DESC LIMIT :limit";
-        $statement = $this->db->prepare($sql);
-        $statement->bindParam(':enabled', $isEnabled, \PDO::PARAM_BOOL);
-        $statement->bindParam(':limit', $limit, \PDO::PARAM_INT);
-        $statement->execute();
+        $sql = "SELECT * FROM event WHERE enabled = :enabled ORDER BY created_at DESC LIMIT $limit";
+        $statement = $this->db->query($sql, [
+            ':enabled'=> $isEnabled
+        ]);
+
         $events = [];
 
         while ($row = $statement->fetch()) {

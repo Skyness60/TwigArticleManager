@@ -3,8 +3,8 @@
 use App\Repository\ArticleRepository;
 use App\Repository\EventRepository;
 
-$articleRepository = new ArticleRepository($db);
-$eventRepository = new EventRepository($db);
+$articleRepository = new ArticleRepository();
+$eventRepository = new EventRepository();
 
 $articles = $articleRepository->getLatestArticles(5, true);
 $events = $eventRepository->getLatestEvents(5, true);
